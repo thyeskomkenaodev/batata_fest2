@@ -529,14 +529,18 @@
                         <input type="text" id="bairro" name="bairro" required>
                     </div>
                     <div class="form-group">
+                        <label for="rua">Rua</label>
+                        <input type="text" id="rua" name="rua" required>
+                    </div>
+                    <div class="form-group">
                         <label for="numero">Número da casa</label>
                         <input type="text" id="numero" name="numero" required>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="telefone">Telefone para contato</label>
-                    <input type="tel" id="telefone" name="telefone" required>
+                    
+                    <div class="form-group">
+                        <label for="telefone">Telefone para contato</label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -846,7 +850,7 @@
                 // IMPORTANTE: Substitua '5500000000000' pelo seu número de WhatsApp com código do país (ex: 55 para o Brasil)
                 const numeroWhatsApp = '5567999361566'; 
 
-                const nome = document.getElementById('nome').value;
+                const nome = document.getElementById('nome').value; 
                 const bairro = document.getElementById('bairro').value;
                 const numero = document.getElementById('numero').value;
                 const telefone = document.getElementById('telefone').value;
@@ -871,7 +875,8 @@
                     infoPagamento += ` (Troco para R$ ${valorPago})`;
                 }
 
-                let mensagem = `*-- Novo Pedido (Batata Fest) --*\n\n*Cliente:* ${nome}\n*Telefone:* ${telefone}\n*Endereço:* Bairro ${bairro}, Nº ${numero}\n\n*📝 Itens do Pedido:*\n${itensPedido}\n*💰 Total:* ${totalFormatado}\n*💳 Forma de Pagamento:* ${infoPagamento}\n\n`;
+                const rua = document.getElementById('rua').value;
+                let mensagem = `*-- Novo Pedido (Batata Fest) --*\n\n*Cliente:* ${nome}\n*Telefone:* ${telefone}\n*Endereço:* Rua ${rua}, Bairro ${bairro}, Nº ${numero}\n\n*📝 Itens do Pedido:*\n${itensPedido}\n*💰 Total:* ${totalFormatado}\n*💳 Forma de Pagamento:* ${infoPagamento}\n\n`;
 
                 if (observacoes) {
                     mensagem += `*Observações:* ${observacoes}`;
