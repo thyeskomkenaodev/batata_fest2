@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batata Fest - Delivery de Batatas Recheadas</title>
+    <style>
+        /* TODOS OS ESTILOS ORIGINAIS MANTIDOS */
+        :root {
+            --marrom: #8B4513;
+            --marrom-claro: #A0522D;
+            --amarelo: #FFD700;
+            --amarelo-claro: #FFFACD;
+            --branco: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--amarelo-claro);
+            color: var(--marrom);
+        }
+
+        header {
+            background-color: var(--marrom);
+            color: var(--amarelo);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-imagem {
+            height: 50px; /* Ajuste a altura conforme necessário */
+            margin-right: 15px; /* Espaço entre a imagem e o texto */
+        }
+
+        .slogan {
+            font-style: italic;
+            color: var(--branco);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(139, 69, 19, 0.7), rgba(139, 69, 19, 0.7)), url('https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--branco);
+            margin-bottom: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--amarelo);
+            color: var(--marrom);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--marrom);
+            color: var(--amarelo);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu {
+            margin-bottom: 40px;
+        }
+
+        .menu h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: var(--marrom);
+            position: relative;
+        }
+
+        .menu h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--amarelo);
+            margin: 10px auto;
+        }
+
+        .items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .item {
+            background-color: var(--branco);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .item:hover {
+            transform: translateY(-10px);
+        }
+
+        .item-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .item:hover .item-img img {
+            transform: scale(1.1);
+        }
+
+        .item-info {
+            padding: 20px;
+        }
+
+        .item-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--marrom);
+        }
+
+        .item-info p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .item-info .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--marrom);
+        }
+
+        .order-form {
+            background-color: var(--branco);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .order-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--marrom);
+            position: relative;
+        }
+
+        .order-form h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--amarelo);
+            margin: 10px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--marrom);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1em;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .flavors-select {
+            margin-bottom: 30px;
+        }
+
+        .flavor-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .flavor-option:hover {
+            border-color: var(--amarelo);
+            background-color: var(--amarelo-claro);
+        }
+
+        .flavor-checkbox {
+            margin-right: 15px;
+        }
+
+        .flavor-info {
+            flex: 1;
+        }
+
+        .flavor-info h4 {
+            margin-bottom: 5px;
+            color: var(--marrom);
+        }
+
+        .flavor-info .price {
+            font-weight: bold;
+            color: var(--marrom-claro);
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: var(--amarelo);
+            color: var(--marrom);
+            border: none;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            margin: 0 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .total-section {
+            background-color: var(--amarelo-claro);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .total-section h3 {
+            color: var(--marrom);
+            margin-bottom: 10px;
+        }
+
+        .total-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+
+        .total-value {
+            font-size: 1.2rem;
+            color: var(--marrom);
+        }
+
+        .payment-method {
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .troco-field {
+            display: none;
+            margin-top: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .troco-info {
+            background-color: var(--amarelo-claro);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .troco-value {
+            font-weight: bold;
+            color: var(--marrom);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            background-color: var(--marrom);
+            color: var(--branco);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: var(--branco);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--amarelo);
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--branco);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal h3 {
+            color: var(--marrom);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .modal p {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="batata.png" alt="Logotipo Batata Fest" class="logo-imagem">
+                <span>Batata Fest</span>
+            </div>
+            <div class="slogan">A batata recheada mais saborosa da cidade!</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Batatas Recheadas Artesanais</h2>
+            <p>Deliciosas batatas recheadas com ingredientes selecionados, preparadas com carinho e entregues na porta da sua casa!</p>
+            <a href="#pedido" class="btn">Faça seu pedido</a>
+        </section>
+
+        <section class="menu">
+            <h2>Nossos Sabores</h2>
+            <div class="items">
+                <div class="item">
+                    <div class="item-img">
+                        <img src="batatafrango.jpeg" alt="Strogonoff de Frango">
+                    </div>
+                    <div class="item-info">
+                        <h3>Strogonoff de Frango</h3>
+                        <p>Batata recheada com strogonoff de frango cremoso, molho especial e catupiry.</p>
+                        <div class="price">R$ 28,00</div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-img">
+                        <img src="batatacarne.jpeg" alt="Strogonoff de Carne">
+                    </div>
+                    <div class="item-info">
+                        <h3>Strogonoff de Carne</h3>
+                        <p>Batata recheada com strogonoff de carne suculenta, molho especial e queijo derretido.</p>
+                        <div class="price">R$ 28,00</div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-img">
+                        <img src="batatacostela.jpeg" alt="Costela Desfiada">
+                    </div>
+                    <div class="item-info">
+                        <h3>Costela Desfiada</h3>
+                        <p>Batata recheada com costela desfiada suculenta e dupla camada de queijo derretido.</p>
+                        <div class="price">R$ 30,00</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pedido" class="order-form">
+            <h2>Faça seu pedido</h2>
+            <form id="pedidoForm">
+                <div class="form-group">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numero">Número da casa</label>
+                        <input type="text" id="numero" name="numero" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone para contato</label>
+                    <input type="tel" id="telefone" name="telefone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Selecione seus sabores e quantidades:</label>
+                    <div class="flavors-select">
+                        <div class="flavor-option">
+                            <div class="flavor-checkbox">
+                                <input type="checkbox" id="sabor1" name="sabor" value="Strogonoff de Frango" data-price="28.00">
+                            </div>
+                            <div class="flavor-info">
+                                <h4>Strogonoff de Frango</h4>
+                                <div class="price">R$ 28,00</div>
+                                <div class="quantity-controls">
+                                    <button type="button" class="quantity-btn minus" data-target="quantity1">-</button>
+                                    <input type="number" id="quantity1" class="quantity-input" value="1" min="1" disabled>
+                                    <button type="button" class="quantity-btn plus" data-target="quantity1">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flavor-option">
+                            <div class="flavor-checkbox">
+                                <input type="checkbox" id="sabor2" name="sabor" value="Strogonoff de Carne" data-price="28.00">
+                            </div>
+                            <div class="flavor-info">
+                                <h4>Strogonoff de Carne</h4>
+                                <div class="price">R$ 28,00</div>
+                                <div class="quantity-controls">
+                                    <button type="button" class="quantity-btn minus" data-target="quantity2">-</button>
+                                    <input type="number" id="quantity2" class="quantity-input" value="1" min="1" disabled>
+                                    <button type="button" class="quantity-btn plus" data-target="quantity2">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flavor-option">
+                            <div class="flavor-checkbox">
+                                <input type="checkbox" id="sabor3" name="sabor" value="Costela Desfiada" data-price="30.00">
+                            </div>
+                            <div class="flavor-info">
+                                <h4>Costela Desfiada</h4>
+                                <div class="price">R$ 30,00</div>
+                                <div class="quantity-controls">
+                                    <button type="button" class="quantity-btn minus" data-target="quantity3">-</button>
+                                    <input type="number" id="quantity3" class="quantity-input" value="1" min="1" disabled>
+                                    <button type="button" class="quantity-btn plus" data-target="quantity3">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pagamento">Forma de pagamento</label>
+                    <select id="pagamento" name="pagamento" required>
+                        <option value="">Selecione...</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Cartão de Crédito">Cartão de Crédito (sem taxa)</option>
+                        <option value="Cartão de Débito">Cartão de Débito</option>
+                        <option value="PIX">PIX</option>
+                    </select>
+                    <div id="trocoField" class="troco-field">
+                        <label for="troco">Valor em dinheiro que você vai entregar</label>
+                        <input type="text" id="troco" name="troco" placeholder="Digite o valor total em dinheiro">
+                        <div id="trocoInfo" class="troco-info" style="display: none;">
+                            <div class="total-info">
+                                <span>Troco calculado:</span>
+                                <span class="troco-value" id="trocoValue">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="total-section" id="totalSection">
+                    <h3>Resumo do Pedido</h3>
+                    <div id="itensSelecionados"></div>
+                    <div class="total-info">
+                        <span>Total:</span>
+                        <span class="total-value" id="totalValue">R$ 0,00</span>
+                    </div>
+                    <div class="payment-method" id="paymentMethod"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="observacoes">Observações</label>
+                    <textarea id="observacoes" name="observacoes" rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;"></textarea>
+                </div>
+
+                <button type="submit" class="btn">Finalizar Pedido</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">Batata Fest</div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 thyesko menão - Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
+
+    <div id="pedidoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Pedido realizado com sucesso!</h3>
+            <p>Seu pedido foi recebido e já está sendo preparado com todo carinho. Em breve entraremos em contato para confirmar o horário de entrega.</p>
+            <p>Agradecemos pela preferência!</p>
+            <button class="btn" id="fecharModal">OK</button>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('pedidoForm');
+            const modal = document.getElementById('pedidoModal');
+            const closeModal = document.querySelector('.close-modal');
+            const fecharModalBtn = document.getElementById('fecharModal');
+            const totalSection = document.getElementById('totalSection');
+            const totalValue = document.getElementById('totalValue');
+            const paymentMethod = document.getElementById('paymentMethod');
+            const pagamentoSelect = document.getElementById('pagamento');
+            const trocoField = document.getElementById('trocoField');
+            const trocoInput = document.getElementById('troco');
+            const trocoInfo = document.getElementById('trocoInfo');
+            const trocoValue = document.getElementById('trocoValue');
+            const itensSelecionados = document.getElementById('itensSelecionados');
+            
+            // Preços dos sabores
+            const precos = {
+                'Strogonoff de Frango': 28.00,
+                'Strogonoff de Carne': 28.00,
+                'Costela Desfiada': 30.00
+            };
+
+            // Mostrar/ocultar campo de troco
+            pagamentoSelect.addEventListener('change', function() {
+                if (this.value === 'Dinheiro') {
+                    trocoField.style.display = 'block';
+                    // Focar no campo de troco automaticamente
+                    setTimeout(() => trocoInput.focus(), 100);
+                } else {
+                    trocoField.style.display = 'none';
+                    trocoInfo.style.display = 'none';
+                    trocoInput.value = '';
+                }
+                atualizarTotal();
+            });
+
+            // Atualizar informações de troco
+            trocoInput.addEventListener('input', function() {
+                const valorPago = parseFloat(this.value.replace(',', '.')) || 0;
+                const totalPedido = calcularTotal();
+                
+                if (valorPago > 0) {
+                    trocoInfo.style.display = 'block';
+                    if (valorPago >= totalPedido) {
+                        const troco = valorPago - totalPedido;
+                        trocoValue.textContent = `R$ ${troco.toFixed(2).replace('.', ',')}`;
+                        trocoValue.style.color = 'green';
+                    } else {
+                        const falta = totalPedido - valorPago;
+                        trocoValue.textContent = `Faltam R$ ${falta.toFixed(2).replace('.', ',')}`;
+                        trocoValue.style.color = 'red';
+                    }
+                } else {
+                    trocoInfo.style.display = 'none';
+                }
+            });
+
+            // Controles de quantidade
+            document.querySelectorAll('.quantity-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    const input = document.getElementById(target);
+                    let value = parseInt(input.value);
+                    
+                    if (this.classList.contains('minus')) {
+                        if (value > 1) {
+                            value--;
+                        }
+                    } else if (this.classList.contains('plus')) {
+                        value++;
+                    }
+                    
+                    input.value = value;
+                    atualizarTotal();
+                });
+            });
+
+            // Habilitar/desabilitar controles de quantidade quando o checkbox é clicado
+            document.querySelectorAll('input[name="sabor"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const id = this.id;
+                    const quantityInput = document.getElementById(`quantity${id.slice(5)}`);
+                    quantityInput.disabled = !this.checked;
+                    
+                    if (!this.checked) {
+                        quantityInput.value = 1;
+                    }
+                    
+                    atualizarTotal();
+                });
+            });
+
+            // Calcular valor total do pedido e mostrar itens selecionados
+            function calcularTotal() {
+                const sabores = document.querySelectorAll('input[name="sabor"]:checked');
+                let total = 0;
+                let htmlItens = '';
+                
+                sabores.forEach(sabor => {
+                    const id = sabor.id;
+                    const quantityInput = document.getElementById(`quantity${id.slice(5)}`);
+                    const quantidade = parseInt(quantityInput.value) || 1;
+                    const preco = parseFloat(sabor.dataset.price);
+                    const subtotal = preco * quantidade;
+                    
+                    total += subtotal;
+                    
+                    htmlItens += `
+                        <div class="total-info" style="margin-bottom: 5px;">
+                            <span>${sabor.value} (${quantidade}x):</span>
+                            <span>R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                    `;
+                });
+                
+                // Atualizar lista de itens selecionados
+                if (sabores.length > 0) {
+                    itensSelecionados.innerHTML = htmlItens;
+                } else {
+                    itensSelecionados.innerHTML = '';
+                }
+                
+                return total;
+            }
+
+            // Atualizar total quando sabores ou forma de pagamento mudam
+            function atualizarTotal() {
+                const total = calcularTotal();
+                
+                // Mostrar/ocultar seção de total
+                const sabores = document.querySelectorAll('input[name="sabor"]:checked');
+                if (sabores.length > 0) {
+                    totalSection.style.display = 'block';
+                    totalValue.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+                    
+                    // Atualizar troco se houver valor digitado
+                    if (pagamentoSelect.value === 'Dinheiro' && trocoInput.value) {
+                        const valorPago = parseFloat(trocoInput.value.replace(',', '.')) || 0;
+                        if (valorPago > 0) {
+                            trocoInfo.style.display = 'block';
+                            if (valorPago >= total) {
+                                const troco = valorPago - total;
+                                trocoValue.textContent = `R$ ${troco.toFixed(2).replace('.', ',')}`;
+                                trocoValue.style.color = 'green';
+                            } else {
+                                const falta = total - valorPago;
+                                trocoValue.textContent = `Faltam R$ ${falta.toFixed(2).replace('.', ',')}`;
+                                trocoValue.style.color = 'red';
+                            }
+                        } else {
+                            trocoInfo.style.display = 'none';
+                        }
+                    }
+                } else {
+                    totalSection.style.display = 'none';
+                }
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validar se pelo menos um sabor foi selecionado
+                const sabores = document.querySelectorAll('input[name="sabor"]:checked');
+                if (sabores.length === 0) {
+                    alert('Por favor, selecione pelo menos um sabor.');
+                    return;
+                }
+                
+                // Validar forma de pagamento
+                if (!pagamentoSelect.value) {
+                    alert('Por favor, selecione uma forma de pagamento.');
+                    return;
+                }
+                
+                // Validar troco se for dinheiro
+                if (pagamentoSelect.value === 'Dinheiro' && trocoInput.value) {
+                    const valorPago = parseFloat(trocoInput.value.replace(',', '.')) || 0;
+                    const totalPedido = calcularTotal();
+                    
+                    if (valorPago < totalPedido) {
+                        alert('O valor em dinheiro deve ser maior ou igual ao total do pedido.');
+                        return;
+                    }
+                }
+                
+                // --- INÍCIO: Lógica para enviar para o WhatsApp ---
+
+                // IMPORTANTE: Substitua '5500000000000' pelo seu número de WhatsApp com código do país (ex: 55 para o Brasil)
+                const numeroWhatsApp = '5567999361566'; 
+
+                const nome = document.getElementById('nome').value;
+                const bairro = document.getElementById('bairro').value;
+                const numero = document.getElementById('numero').value;
+                const telefone = document.getElementById('telefone').value;
+                const observacoes = document.getElementById('observacoes').value;
+                const formaPagamento = pagamentoSelect.value;
+                
+                let itensPedido = '';
+                sabores.forEach(sabor => {
+                    const id = sabor.id;
+                    const quantityInput = document.getElementById(`quantity${id.slice(5)}`);
+                    const quantidade = parseInt(quantityInput.value) || 1;
+                    const nomeSabor = sabor.value;
+                    itensPedido += `- ${quantidade}x ${nomeSabor}\n`;
+                });
+                
+                const totalPedido = calcularTotal();
+                const totalFormatado = `R$ ${totalPedido.toFixed(2).replace('.', ',')}`;
+
+                let infoPagamento = formaPagamento;
+                if (formaPagamento === 'Dinheiro' && trocoInput.value) {
+                    const valorPago = parseFloat(trocoInput.value.replace(',', '.')).toFixed(2).replace('.', ',');
+                    infoPagamento += ` (Troco para R$ ${valorPago})`;
+                }
+
+                let mensagem = `*-- Novo Pedido (Batata Fest) --*\n\n*Cliente:* ${nome}\n*Telefone:* ${telefone}\n*Endereço:* Bairro ${bairro}, Nº ${numero}\n\n*📝 Itens do Pedido:*\n${itensPedido}\n*💰 Total:* ${totalFormatado}\n*💳 Forma de Pagamento:* ${infoPagamento}\n\n`;
+
+                if (observacoes) {
+                    mensagem += `*Observações:* ${observacoes}`;
+                }
+                
+                const mensagemCodificada = encodeURIComponent(mensagem);
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
+
+                window.open(whatsappUrl, '_blank').focus();
+                modal.style.display = 'flex';
+            });
+
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                form.reset();
+                totalSection.style.display = 'none';
+                trocoField.style.display = 'none';
+                trocoInfo.style.display = 'none';
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.value = 1;
+                    input.disabled = true;
+                });
+            });
+
+            fecharModalBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                form.reset();
+                totalSection.style.display = 'none';
+                trocoField.style.display = 'none';
+                trocoInfo.style.display = 'none';
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.value = 1;
+                    input.disabled = true;
+                });
+            });
+
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    form.reset();
+                    totalSection.style.display = 'none';
+                    trocoField.style.display = 'none';
+                    trocoInfo.style.display = 'none';
+                    document.querySelectorAll('.quantity-input').forEach(input => {
+                        input.value = 1;
+                        input.disabled = true;
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
